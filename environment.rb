@@ -3,10 +3,10 @@ Bundler.require(:default)
 require 'logger'
 require './gazelle'
 
-if !File.exist?('secrets.json')
+if !File.exist?('config/secrets.json')
   raise RuntimeError, "Couldn't boot because decrypted secrets not present next to #{__FILE__}"
 end
-Secrets = JSON.load(File.open('secrets.json'))
+Secrets = JSON.load(File.open('config/secrets.json'))
 
 DB = Sequel.connect("sqlite://db.sqlite")
 

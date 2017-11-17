@@ -13,3 +13,11 @@ gem 'lastfm'
 gem 'sequel'
 gem 'sqlite3'
 gem 'rake'
+
+gem 'whenever', :require => false
+
+group :development do
+  gem 'capistrano', '~> 3.10'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+end

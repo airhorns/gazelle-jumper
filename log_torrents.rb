@@ -6,7 +6,6 @@ GazelleAPI = RubyGazelle::Gazelle.connect(
   password: Secrets['gazelle']['password']
 )
 
-
 class Torrent < Sequel::Model
   one_to_many :torrent_stats
 end
