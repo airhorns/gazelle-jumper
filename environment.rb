@@ -8,7 +8,7 @@ if !File.exist?('config/secrets.json')
 end
 Secrets = JSON.load(File.open('config/secrets.json'))
 
-DB = Sequel.connect("sqlite://db.sqlite")
+DB = Sequel.connect("sqlite://db/db.sqlite")
 
 Log = Logger.new($stdout)
 Log.level = Logger::INFO

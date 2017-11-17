@@ -21,5 +21,5 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'capistrano-ejson'
+  gem 'capistrano-ejson', github: 'Shopify/capistrano-ejson', ref: '544f3cc0d636586e4b789a4a489f120af765030f'
 end
