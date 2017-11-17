@@ -1,4 +1,4 @@
-set :output, "~/gazelle-jumper/log/cron_log.log"
+set :output, "~/gazelle-jumper/shared/log/cron_log.log"
 
 job_type :rbenv_command, %Q{export PATH=/home/deploy/.rbenv/shims:/home/deploy/.rbenv/bin:/usr/bin:$PATH; eval "$(rbenv init -)"; \
                          cd :path && :environment_variable=:environment :bundle_command :task :output }
