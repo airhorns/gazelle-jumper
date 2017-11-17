@@ -25,6 +25,7 @@ def log_once
   stat_count = 0
 
   groups.each do |group|
+    next unless group["torrents"]
     group["torrents"].each do |torrent|
       torrent_record = Torrent.where(gazelle_torrent_id: torrent['torrentId']).first
       unless torrent_record
