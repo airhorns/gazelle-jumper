@@ -1,4 +1,5 @@
 require './environment'
+require 'socket'
 
 GazelleAPI = RubyGazelle::Gazelle.connect(
   site: Secrets['gazelle']['site'],
@@ -14,9 +15,18 @@ class TorrentStat < Sequel::Model
   many_to_one :torrent
 end
 
+class Import < Sequel::Model
+end
+
 def log_once
-  groups = Log.time("Fetching 5 pages") do
-    (1..5).flat_map do |page|
+  current_import = Import.create(
+    process_id: Process.pid,
+    hostname: Socket.gethostname,
+    created_at: Time.now.utc
+  )
+
+  groups = Log.time("Fetching 5 pages import_id=#{current_import.id}") do
+    (1..1).flat_map do |page|
       GazelleAPI.search(:torrents, order_by: 'time', order_way: 'desc').response.results
     end
   end
@@ -37,7 +47,9 @@ def log_once
           format: "#{torrent['media']} / #{torrent['format']} / #{torrent['encoding']}",
           gazelle_group_created_at: Time.at(group['groupTime'].to_i).utc,
           gazelle_created_at: DateTime.parse(torrent['time']).to_time.utc,
-          created_at: Time.now.utc
+          size_in_bytes: torrent['size'],
+          created_at: Time.now.utc,
+          import_id: current_import.id
         )
         torrent_count += 1
       end
@@ -47,14 +59,14 @@ def log_once
         snatches: torrent['snatches'],
         seeders: torrent['seeders'],
         leechers: torrent['leechers'],
-        size_in_bytes: torrent['size'],
-        created_at: Time.now.utc
+        created_at: Time.now.utc,
+        import_id: current_import.id
       )
       stat_count += 1
     end
   end
 
-  Log.info "Injest complete torrent_count=#{torrent_count} stat_count=#{stat_count}"
+  Log.info "Injest complete torrent_count=#{torrent_count} stat_count=#{stat_count} import_id=#{current_import.id}"
 end
 
 log_once
