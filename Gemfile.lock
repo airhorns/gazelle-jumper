@@ -17,6 +17,12 @@ GEM
     capistrano-bundler (1.3.0)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-ejson (1.0.1)
+      capistrano (~> 3.1)
+      ejson (~> 1.0, >= 1.0.0)
+    capistrano-rails (1.3.0)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
     capistrano-rbenv (2.1.3)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
@@ -58,6 +64,8 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.10)
   capistrano-bundler
+  capistrano-ejson
+  capistrano-rails
   capistrano-rbenv
   ejson
   httparty

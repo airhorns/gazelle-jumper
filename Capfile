@@ -5,6 +5,8 @@ install_plugin Capistrano::SCM::Git
 
 require "capistrano/rbenv"
 require "capistrano/bundler"
+require "capistrano/ejson"
+require 'capistrano/rails/migrations'
 require "whenever/capistrano"
 
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }

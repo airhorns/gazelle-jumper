@@ -20,4 +20,6 @@ group :development do
   gem 'capistrano', '~> 3.10'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-ejson'
 end
