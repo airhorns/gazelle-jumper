@@ -7,3 +7,5 @@ set :deploy_to, "~/gazelle-jumper"
 append :linked_dirs, "log"
 
 set :rbenv_type, :user
+
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }

@@ -3,4 +3,4 @@ db.sqlite
 deploy.sh
 .byebug_history
 last_fm_artists.csv
-cron_log.log
+log/*
