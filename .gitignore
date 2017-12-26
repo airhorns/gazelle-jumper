@@ -4,3 +4,4 @@ deploy.sh
 .byebug_history
 last_fm_artists.csv
 log/*
+node_modules
